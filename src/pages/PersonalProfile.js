@@ -17,7 +17,8 @@ import {Actions} from 'react-native-router-flux';
 
 function mapStateToProps(state) {
   return {
-    profile: state.profileReducer
+    profile: state.profileReducer,
+    auth: state.authReducer,
   }
 }
 
@@ -71,6 +72,9 @@ class PersonalProfile extends React.Component {
     this.state = {
       isReady: false,
     }
+
+    this.props.actions.initProfileWithUser(this.props.auth.loginUserName);
+
     Promise.all(
       [loadFigure(),
       ExpoTHREE.loadAsync(models['default_avatar.jpg'])]
@@ -87,11 +91,13 @@ class PersonalProfile extends React.Component {
 
   render() {
    if (this.state.isReady) {
+    var imageSource = this.props.profile.profileInfo.gender == '男'?
+      require('../resources/default_avatar.jpg'): require('../resources/default_avatar_girl.jpeg');
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
           <TouchableListItem index='image' style={styles.imageListItem} title='头像' onPressReact={() => this.onPressReact('image')} editable={false}>
-            <Image style={{width: 100, height: 100}} source={require('../resources/default_avatar.jpg')} />
+            <Image style={{width: 100, height: 100}} source={imageSource} />
           </TouchableListItem>
           <TouchableListItem index='name' style={styles.listItem} title='姓名' onPressReact={() => this.onPressReact('name')}>
             <Text>{this.props.profile.profileInfo.name}</Text>

@@ -7,8 +7,8 @@
 	<key>isShell</key>
 	<true/>
 	<key>manifestUrl</key>
-	<string>exp://exp.host/@morgan_work/testExp</string>
+	<string>https://exp.host/@morgan_work/testExp</string>
 	<key>releaseChannel</key>
-	<string>default</string>
+	<string>demo</string>
 </dict>
 </plist>

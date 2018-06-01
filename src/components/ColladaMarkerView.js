@@ -34,9 +34,6 @@ async function loadModel(modelName) {
 class ColladaMarkerView extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   loading: true,
-    // }
   }
   render() {
     return (

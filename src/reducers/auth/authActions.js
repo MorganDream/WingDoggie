@@ -118,7 +118,6 @@ function veiryWithNameAndPassword(username, password, onSuccess, onFail) {
         let fixedPass = user.password;
         console.log(fixedName);
         if(username == fixedName && password == fixedPass){
-          console.log(username);
           resolve(username);
         }
       });

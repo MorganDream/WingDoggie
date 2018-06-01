@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.morgan.personal.Profile</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -38,6 +38,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>EXAnalyticsDisabled</key>
+	<string>YES</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -65,12 +67,14 @@
 	<string>Allow testExp to use your camera</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Allow testExp to access your contacts</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow testExp to use your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow testExp to use your location</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow testExp to access your microphone</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Allow testExp to access your device&apos;s accelerometer</string>
+	<string>Allow testExp to access your device's accelerometer</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Give testExp permission to save photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -78,7 +82,7 @@
 	<key>NSRemindersUsageDescription</key>
 	<string>Allow testExp to access your reminders</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>specifiedLaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array/>
 	<key>UIRequiresFullScreen</key>

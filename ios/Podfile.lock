@@ -34,8 +34,8 @@ PODS:
   - CocoaLumberjack/Default (3.2.1)
   - CocoaLumberjack/Extensions (3.2.1):
     - CocoaLumberjack/Default
-  - Crashlytics (3.10.1):
-    - Fabric (~> 1.7.5)
+  - Crashlytics (3.10.2):
+    - Fabric (~> 1.7.7)
   - DoubleConversion (1.1.5)
   - ExpoKit/Core (2.3.3):
     - Amplitude-iOS (~> 3.8)
@@ -57,7 +57,7 @@ PODS:
     - lottie-ios (~> 2.1.3)
   - ExpoKit/CPP (2.3.3):
     - ExpoKit/Core
-  - Fabric (1.7.6)
+  - Fabric (1.7.7)
   - FBAudienceNetwork (4.28.1)
   - FBSDKCoreKit (4.33.0):
     - Bolts (~> 1.7)
@@ -191,14 +191,14 @@ SPEC CHECKSUMS:
   boost: 30a15ffb6d9aa4646dd3caffc960753f4cb4ca4e
   Branch: f63d9cf82ac09747349a73184a0b739d28781c4d
   CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
-  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   DoubleConversion: ebb6747c5b66026ad4f97b789c3ceac6f18e57a6
   ExpoKit: b322775eb089a18e60ddc2b785d00a0aa08ad316
-  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
+  Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   FBAudienceNetwork: c0cda151bb2f7b55d1e045e59ebc81f3153989b2
   FBSDKCoreKit: 572b047a7e029bc44542bcf8a59414e7ff2b543e
   FBSDKLoginKit: 88cb456349cfb3b554427ce4f8b43729d85dfb40
-  FBSDKShareKit: b7b5002833a4104fbecad75e8e4e082e91c7a08a
+  FBSDKShareKit: 1869cb24db2cea90666a50cb9d568deb38e2d16e
   Folly: b7255b29f1d693c375d642d0f04f0592181156d9
   GLog: 3e4e4ae9746ce6bf6e9420c7fc1e08ad59c8ba1a
   Google-Mobile-Ads-SDK: 1bdf1a4244d0553b1840239874c209c01aef055f
@@ -215,6 +215,6 @@ SPEC CHECKSUMS:
   React: 43e97926f429d846050880666de1809e22dd5cc5
   yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: 1eb6cc17371e77cf271e6af85b539f5916cec1cf
+PODFILE CHECKSUM: 1002dfe250d56e70e8c6ace701d8cc8ca1342a14
 
 COCOAPODS: 1.4.0

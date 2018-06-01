@@ -25,6 +25,11 @@ class DrawerContent extends React.Component {
             underlayColor={'#7373a5'}>
             <Text>My Profile</Text>
           </TouchableHighlight>
+          <TouchableHighlight style={styles.button}
+            onPress={()=> {Actions.searchNearby()}}
+            underlayColor={'#7373a5'}>
+            <Text>Search Nearby</Text>
+          </TouchableHighlight>
         </View>
       </View>
     )

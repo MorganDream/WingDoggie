@@ -57,7 +57,7 @@ const styles=StyleSheet.create({
   buttonText: {
     fontSize: 20,
     padding: 20
-  }
+  },
 });
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(MainPage);

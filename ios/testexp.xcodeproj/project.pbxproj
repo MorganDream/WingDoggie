@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5031DCE520B6A3FA001330E7 /* specifiedLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5031DCE420B6A3FA001330E7 /* specifiedLaunchScreen.storyboard */; };
 		504984B720AC08BD00D7D139 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 504984B620AC08BD00D7D139 /* Models.scnassets */; };
-		504984B920AD641300D7D139 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 504984B820AD641200D7D139 /* main.jsbundle */; };
 		506B16C920AAE65E0055EB09 /* PocketSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506B16C620AAE6410055EB09 /* PocketSVG.framework */; };
 		506B16CA20AAE6990055EB09 /* PocketSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506B16C620AAE6410055EB09 /* PocketSVG.framework */; };
 		506B16CB20AAE6990055EB09 /* PocketSVG.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 506B16C620AAE6410055EB09 /* PocketSVG.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -17,7 +17,6 @@
 		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
 		B56386611DB96A5E00A0598C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
 		B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */ = {isa = PBXBuildFile; fileRef = B56386661DB9994300A0598C /* EXSDKVersions.plist */; };
-		B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */; };
 		B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8F1FABD46800307FA4 /* launch_background_image.png */; };
 		B5693E921FABD46800307FA4 /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E901FABD46800307FA4 /* launch_icon.png */; };
 		B56AC1081E417996005C22D6 /* kernel-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B56AC1071E417996005C22D6 /* kernel-manifest.json */; };
@@ -76,8 +75,8 @@
 /* Begin PBXFileReference section */
 		2C1548D9E4CB1AEFA5CCAE6D /* Pods-testexp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testexp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-testexp/Pods-testexp.debug.xcconfig"; sourceTree = "<group>"; };
 		40AD63999AFB47EDA7E21F8D /* libRCTARKit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTARKit.a; sourceTree = "<group>"; };
+		5031DCE420B6A3FA001330E7 /* specifiedLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = specifiedLaunchScreen.storyboard; path = testexp/Supporting/specifiedLaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		504984B620AC08BD00D7D139 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
-		504984B820AD641200D7D139 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		506B16C020AAE6410055EB09 /* PocketSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PocketSVG.xcodeproj; path = "../node_modules/react-native-arkit/ios/PocketSVG/PocketSVG.xcodeproj"; sourceTree = "<group>"; };
 		A47FE4D7F70906B7DC8CE39B /* Pods-testexp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testexp.release.xcconfig"; path = "Pods/Target Support Files/Pods-testexp/Pods-testexp.release.xcconfig"; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
@@ -88,7 +87,6 @@
 		B563865C1DB96A5E00A0598C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B563865E1DB96A5E00A0598C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B56386661DB9994300A0598C /* EXSDKVersions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXSDKVersions.plist; sourceTree = "<group>"; };
-		B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		B5693E8F1FABD46800307FA4 /* launch_background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_background_image.png; sourceTree = "<group>"; };
 		B5693E901FABD46800307FA4 /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
 		B56AC1071E417996005C22D6 /* kernel-manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kernel-manifest.json"; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 		B56386381DB9693800A0598C = {
 			isa = PBXGroup;
 			children = (
-				504984B820AD641200D7D139 /* main.jsbundle */,
 				504984B620AC08BD00D7D139 /* Models.scnassets */,
 				B56386431DB9693800A0598C /* testexp */,
 				B56386421DB9693800A0598C /* Products */,
@@ -203,7 +200,6 @@
 			children = (
 				B5693E8F1FABD46800307FA4 /* launch_background_image.png */,
 				B5693E901FABD46800307FA4 /* launch_icon.png */,
-				B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */,
 				B5DB047E1F3A684600E91581 /* shell-app-manifest.json */,
 				B5DB047F1F3A684600E91581 /* shell-app.bundle */,
 				B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */,
@@ -212,6 +208,7 @@
 				B56386661DB9994300A0598C /* EXSDKVersions.plist */,
 				B563865C1DB96A5E00A0598C /* Info.plist */,
 				B563865E1DB96A5E00A0598C /* main.m */,
+				5031DCE420B6A3FA001330E7 /* specifiedLaunchScreen.storyboard */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -255,6 +252,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = NWHN5S4SCT;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -318,11 +320,10 @@
 				B56AC1081E417996005C22D6 /* kernel-manifest.json in Resources */,
 				B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */,
 				B501732B1DC01252003445D9 /* EXShell.plist in Resources */,
-				504984B920AD641300D7D139 /* main.jsbundle in Resources */,
 				B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */,
 				B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */,
+				5031DCE520B6A3FA001330E7 /* specifiedLaunchScreen.storyboard in Resources */,
 				B5693E921FABD46800307FA4 /* launch_icon.png in Resources */,
-				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
 				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
 				504984B720AC08BD00D7D139 /* Models.scnassets in Resources */,
 				B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */,
@@ -559,7 +560,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.morgan.personal.Profile;
+				PRODUCT_BUNDLE_IDENTIFIER = org.morgan.personal.Profile.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -578,7 +579,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = org.morgan.personal.Profile;
+				PRODUCT_BUNDLE_IDENTIFIER = org.morgan.personal.Profile.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

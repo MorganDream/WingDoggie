@@ -4,7 +4,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native';
 
 import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
+import { Marker, Polyline } from 'react-native-maps';
 
 import ExpoTHREE from 'expo-three';
 
@@ -78,6 +78,15 @@ class ProfileMap extends React.Component {
               description={'latitude: '+ this.props.loc.doggieBufferDestination.latitude + ', longitude: ' + this.props.loc.doggieBufferDestination.longitude} >
               <Image source={require('../resources/destination.png')} style={styles.destinationImage} />
             </Marker>
+            &&
+            <Polyline
+              coordinates={[
+                this.props.doggie.position,
+                this.props.loc.doggieBufferDestination,
+              ]}
+              strokeColor="#1a53ff"
+              strokeWidth={3}
+            />
         }
       </MapView>
       </View>
@@ -103,15 +112,15 @@ class ProfileMap extends React.Component {
   // }
 
   componentWillMount() {
-    navigator.geolocation.getCurrentPosition(location => {
-      this.props.actions.onCurrentLocationChange(location.coords);
-      this.toCurrentLocation_({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
+    this.watchId = navigator.geolocation.watchPosition(location => {
+      this.toCurrentLocation_(location.coords);
     }, error=>{
       console.log(error);
     });
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchId);
   }
 
   onPoiClickOnMap = (e) => {
@@ -131,6 +140,7 @@ class ProfileMap extends React.Component {
   }
 
   toCurrentLocation_ = coordinate => {
+    this.props.actions.onCurrentLocationChange(coordinate);
     this.map.animateToCoordinate(coordinate, 500);
   }
 

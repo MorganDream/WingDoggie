@@ -23,6 +23,12 @@
     lodash "^4.17.4"
     react-native-vector-icons "4.5.0"
 
+"@panter/react-animation-frame@^0.3.7":
+  version "0.3.7"
+  resolved "http://product-ci:8081/nexus/content/groups/npm-group/@panter/react-animation-frame/-/react-animation-frame-0.3.7.tgz#31a0d7683e4a8d2e1b29ff512cad36513bd43d00"
+  dependencies:
+    react "15.4.2"
+
 abab@^1.0.4:
   version "1.0.4"
   resolved "http://product-ci:8081/nexus/content/groups/npm-group/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -4388,6 +4394,15 @@ react-native-animatable@^1.2.4:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-arkit@^0.9.0:
+  version "0.9.0"
+  resolved "http://product-ci:8081/nexus/content/groups/npm-group/react-native-arkit/-/react-native-arkit-0.9.0.tgz#e4e757c6fbeed9f8053a3706dbd703b76350ce92"
+  dependencies:
+    "@panter/react-animation-frame" "^0.3.7"
+    fast-deep-equal "^1.0.0"
+    lodash "^4.17.4"
+    prop-types "^15.6.0"
+
 react-native-branch@2.0.0-beta.3:
   version "2.0.0-beta.3"
   resolved "http://product-ci:8081/nexus/content/groups/npm-group/react-native-branch/-/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
@@ -4591,6 +4606,14 @@ react-transform-hmr@^1.0.4:
   dependencies:
     global "^4.3.0"
     react-proxy "^1.1.7"
+
+react@15.4.2:
+  version "15.4.2"
+  resolved "http://product-ci:8081/nexus/content/groups/npm-group/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
+  dependencies:
+    fbjs "^0.8.4"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
 
 react@16.3.1:
   version "16.3.1"

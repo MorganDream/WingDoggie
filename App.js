@@ -24,6 +24,7 @@ import ThreePage from './src/pages/ThreePage';
 import PersonalProfile from './src/pages/PersonalProfile';
 import MyDoggie from './src/pages/MyDoggie';
 import TestAR from './src/pages/TestAR';
+import SearchNearby from './src/pages/SearchNearby';
 
 import DrawerContent from './src/components/DrawerContent';
 import ListItemEditPage from './src/components/ListItemEditPage';
@@ -85,9 +86,12 @@ export default class App extends React.Component {
                 navigationBarStyle={styles.drawerPageNavbar}
                 contentComponent={DrawerContent}
                 drawerWidth={200} >
+                  <Scene key="searchNearby"
+                    component={SearchNearby}
+                    type="push" initial/>
                   <Scene key="ar"
                     component={TestAR}
-                    type="push" initial/>
+                    type="push"/>
                   <Scene key="myClaim"
                     component={PersonalProfile}
                     type="push" />

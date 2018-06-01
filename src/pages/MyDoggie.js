@@ -22,6 +22,7 @@ function mapStateToProps(state) {
   return {
     doggie: state.doggieReducer,
     loc: state.locReducer,
+    auth: state.authReducer,
   }
 }
 
@@ -45,6 +46,9 @@ class MyDoggie extends React.Component {
     this.state = {
       isReady: false,
     }
+
+    this.props.actions.initDoggieWithUser(this.props.auth.loginUserName);
+
     Promise.all(
       [ExpoTHREE.loadAsync(models['Wolf_One_dae.dae']),
       ExpoTHREE.loadAsync(models['doggieTravelling.jpg']),

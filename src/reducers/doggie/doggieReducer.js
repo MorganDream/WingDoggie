@@ -6,7 +6,10 @@ const {
   DOGGIE_STATE_HOME,
   DOGGIE_DESTINATION_UPDATE,
   UPDATE_DOGGIE_LOCATION,
+  INIT_DOGGIE_WITH_USER,
 } = require('../../lib/constants').default;
+
+import { Users } from '../../lib/dataTable';
 
 const InitialState = require('./doggieInitialState').default;
 
@@ -16,6 +19,27 @@ export default function locReducer(state = initialState, action){
   if (!(state instanceof InitialState) || (state == undefined)) return initialState.mergeDeep(state);
 
   switch (action.type) {
+    case INIT_DOGGIE_WITH_USER: {
+      var nextState = state;
+      Users.map(user => {
+        if (user.name == action.payload) {
+          nextState = state.set('name', user.doggie.name)
+                          .set('owner', user.doggie.owner)
+                          .set('isTravelling', user.doggie.isTravelling)
+                          .set('speed', user.doggie.speed)
+                          .set('bearing', user.doggie.bearing)
+                          .set('timeTag', (new Date()))
+                          .setIn(['home', 'latitude'], user.doggie.home.latitude)
+                          .setIn(['home', 'longitude'], user.doggie.home.longitude)
+                          .setIn(['position', 'latitude'], user.doggie.position.latitude)
+                          .setIn(['position', 'longitude'], user.doggie.position.longitude)
+                          .setIn(['destination', 'latitude'], user.doggie.destination.latitude)
+                          .setIn(['destination', 'longitude'], user.doggie.destination.longitude);
+          return;
+        }
+      });
+      return nextState;
+    }
     case DOGGIE_STATE_HOME:{
       var bearing = geolib.getRhumbLineBearing(state.get('position').toJS(), state.get('home').toJS());
       var nextState = state.set('speed', action.payload.speed)

@@ -100,6 +100,8 @@ preBuild.dependsOn exponentPrebuildStep
 
 
 dependencies {
+    compile project(':react-native-background-fetch')
+    compile project(':react-native-background-geolocation')
   compile fileTree(dir: 'libs', include: ['*.jar'])
 
   compile 'com.android.support:multidex:1.0.1'

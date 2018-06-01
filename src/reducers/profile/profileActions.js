@@ -5,7 +5,15 @@ const {
   PROFILE_ITEM_PRESSED,
   PROFILE_EDITING_RESET,
   PROFILE_ITEM_EDITED,
+  INIT_PROFILE_WITH_USER,
 } = require('../../lib/constants').default;
+
+export function initProfileWithUser(userName) {
+  return {
+    type: INIT_PROFILE_WITH_USER,
+    payload: userName,
+  }
+}
 
 export function saveProfileInfo(key, value) {
   return {

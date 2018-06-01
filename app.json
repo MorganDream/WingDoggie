@@ -3,15 +3,13 @@
     "name": "testExp",
     "description": "This project is really great.",
     "slug": "testExp",
-    "privacy": "public",
+    "privacy": "unlisted",
     "sdkVersion": "25.0.0",
     "platforms": [
-      "ios",
-      "android"
+      "ios"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "packagerOpts": {
       "assetExts": [
         "dae",
@@ -37,31 +35,10 @@
         "x"
       ]
     },
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "org.morgan.personal.Profile",
-      "publishBundlePath": "ios/testexp/Supporting/shell-app.bundle",
-      "publishManifestPath": "ios/testexp/Supporting/shell-app-manifest.json"
     },
     "isDetached": true,
-    "detach": {
-      "scheme": "exp0ab57693b082463a981b93c0d5ba753b",
-      "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v2.3.3-sdk25.0.0-e7a4361a-631d-4caf-9692-1880d71c394a.tar.gz",
-      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.3.0-sdk25.0.0-0c32461b-a7c6-4ddc-b85b-32a80c4f18d9.tar.gz"
-    },
-    "scheme": "exp0ab57693b082463a981b93c0d5ba753b",
-    "android": {
-      "package": "android",
-      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
-      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
-    }
   }
 }
