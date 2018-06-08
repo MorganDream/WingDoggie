@@ -96,6 +96,7 @@ export function getSessionToken () {
           dispatch(sessionTokenRequestSuccess(token));
           dispatch(setLoginUserName(token.sessionToken));
           Actions.mainStack();
+      //  Actions.doggieDetails();
         } else {
           dispatch(sessionTokenRequestSuccess(null));
           Actions.welcome();

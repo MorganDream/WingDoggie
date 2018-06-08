@@ -32,4 +32,10 @@ export default keyMirror({
   DOGGIE_DESTINATION_UPDATE: null,
   UPDATE_DOGGIE_LOCATION: null,
   INIT_DOGGIE_WITH_USER: null,
+
+  AR_ADD_UPDATE_PLANE: null,
+  AR_REMOVE_PLANE: null,
+  AR_CHANGE_MODEL_POSITION: null,
+  AR_REINIT_STATE: null,
+  AR_MODEL_SELECT: null,
 });

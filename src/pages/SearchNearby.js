@@ -9,6 +9,7 @@ import { Location } from 'expo';
 
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
+import {Actions} from 'react-native-router-flux';
 
 import * as locActions from '../reducers/location/locActions';
 
@@ -55,7 +56,20 @@ class SearchNearby extends React.Component {
             )
           }
           return (
-            <DoggieCard key={doggie.name} name={doggie.name} />
+            <DoggieCard key={doggie.name}
+              name={doggie.name}
+              onPressReact1={() => {
+                Actions.doggieDetails({
+                  title: 'Doggie Details',
+                  doggie: doggie
+                })
+              }}
+              onPressReact2={() => {
+                Actions.doggieInAR({
+                  title: doggie.name,
+                  doggie:doggie,
+                });
+              }} />
           )
         })
       }

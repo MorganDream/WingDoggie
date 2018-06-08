@@ -23,8 +23,10 @@ import ProfileMap from './src/pages/ProfileMap';
 import ThreePage from './src/pages/ThreePage';
 import PersonalProfile from './src/pages/PersonalProfile';
 import MyDoggie from './src/pages/MyDoggie';
-import TestAR from './src/pages/TestAR';
+import DoggieInAR from './src/pages/DoggieInAR';
 import SearchNearby from './src/pages/SearchNearby';
+import DoggieDetails from './src/pages/DoggieDetails';
+import ImagePreViewer from './src/pages/ImagePreViewer';
 
 import DrawerContent from './src/components/DrawerContent';
 import ListItemEditPage from './src/components/ListItemEditPage';
@@ -39,6 +41,7 @@ import AuthInitialState from './src/reducers/auth/authInitialState';
 import LocInitialState from './src/reducers/location/locInitialState';
 import ProfileInitialState from './src/reducers/profile/profileInitialState';
 import DoggieInitialState from './src/reducers/doggie/doggieInitialState';
+import ARInitialState from './src/reducers/ar/arInitialState';
 
 function configureStore() {
   return applyMiddleware(thunk)(createStore)();
@@ -50,6 +53,7 @@ function getInitialState() {
     locReducer: new LocInitialState(),
     profileReducer: new ProfileInitialState(),
     doggieReducer: new DoggieInitialState(),
+    arReducer: new ARInitialState(),
   }
 }
 
@@ -88,9 +92,6 @@ export default class App extends React.Component {
                 drawerWidth={200} >
                   <Scene key="searchNearby"
                     component={SearchNearby}
-                    type="push" initial/>
-                  <Scene key="ar"
-                    component={TestAR}
                     type="push"/>
                   <Scene key="myClaim"
                     component={PersonalProfile}
@@ -98,7 +99,7 @@ export default class App extends React.Component {
                   <Scene key="main"
                     component={MainPage}
                     type="push"
-                     />
+                    initial />
                   <Scene key="myDog"
                     component={MyDoggie}
                     type="push" />
@@ -113,6 +114,10 @@ export default class App extends React.Component {
              </Scene>
            </Stack>
           </Scene>
+          <Scene key="doggieDetails"
+           component={DoggieDetails}
+           type="push"
+           navBar={CustomNavBar}/>
           <Scene key="map"
            component={ProfileMap}
            navBar={CustomNavBar}
@@ -121,6 +126,14 @@ export default class App extends React.Component {
            component={ListItemEditPage}
            type="push"
            hideNavBar />
+          <Scene key="doggieInAR"
+           component={DoggieInAR}
+           type="push"
+           navBar={CustomNavBar} />
+          <Scene key="imagePreViewer"
+            component={ImagePreViewer}
+            type="push"
+            navBar={CustomNavBar} />
          </Scene>
         </Router>
       </Provider>

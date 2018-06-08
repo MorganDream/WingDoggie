@@ -96,19 +96,19 @@ class PersonalProfile extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <TouchableListItem index='image' style={styles.imageListItem} title='头像' onPressReact={() => this.onPressReact('image')} editable={false}>
+          <TouchableListItem index='image' style={styles.imageListItem} title='头像' onPressReact={() => this.onPressReact('image')}>
             <Image style={{width: 100, height: 100}} source={imageSource} />
           </TouchableListItem>
-          <TouchableListItem index='name' style={styles.listItem} title='姓名' onPressReact={() => this.onPressReact('name')}>
+          <TouchableListItem index='name' style={styles.listItem} title='姓名' onPressReact={() => this.onPressReact('name')} editable={true}>
             <Text>{this.props.profile.profileInfo.name}</Text>
           </TouchableListItem>
-          <TouchableListItem index='gender' style={styles.listItem} title='性别' onPressReact={() => this.onPressReact('gender')}>
+          <TouchableListItem index='gender' style={styles.listItem} title='性别' onPressReact={() => this.onPressReact('gender')} editable={true}>
             <Text>{this.props.profile.profileInfo.gender}</Text>
           </TouchableListItem>
-          <TouchableListItem index='district' style={styles.listItem} title='地区' onPressReact={() => this.onPressReact('district')}>
+          <TouchableListItem index='district' style={styles.listItem} title='地区' onPressReact={() => this.onPressReact('district')} editable={true}>
             <Text>{this.props.profile.profileInfo.district}</Text>
           </TouchableListItem>
-          <TouchableListItem index='sign' style={styles.listItem} title='签名' onPressReact={() => this.onPressReact('sign')}>
+          <TouchableListItem index='sign' style={styles.listItem} title='签名' onPressReact={() => this.onPressReact('sign')} editable={true}>
             <Text>{this.props.profile.profileInfo.sign}</Text>
           </TouchableListItem>
         </View>

@@ -3,6 +3,12 @@ import React from 'react'
 import { Actions } from 'react-native-router-flux'
 
 const styles = StyleSheet.create({
+  transparentContainer: {
+    position:'absolute',
+    flexDirection: 'row',
+    top: 20,
+    alignItems: 'flex-end',
+  },
   container: {
     height: 90,
     flexDirection: 'row',
@@ -74,14 +80,15 @@ export default class CustomNavBar extends React.Component {
 
   render() {
     let dinamicStyle = {}
-    // if (Actions.currentScene === 'customNavBar1') {
-    //   dinamicStyle = { backgroundColor: 'red'}
-    // } else {
-    //   dinamicStyle = { backgroundColor: 'yellow'}
-    // }
+    if (Actions.currentScene === 'doggieDetails' ||
+        Actions.currentScene === 'doggieInAR' ) {
+      dinamicStyle = styles.transparentContainer;
+    } else {
+      dinamicStyle = styles.container;
+    }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={dinamicStyle}>
           { this._renderLeft() }
           { this._renderMiddle() }
           { this._renderRight() }
