@@ -6,6 +6,12 @@ const {
   AR_CHANGE_MODEL_POSITION,
   AR_REINIT_STATE,
   AR_MODEL_SELECT,
+  AR_FEATUREPOINTS_UPDATE,
+  AR_SNAPSHOTS_ADD_REMOVE,
+  AR_SEND_PHOTOS_REQUEST,
+  AR_SEND_PHOTOS_SUCCESS,
+  AR_SEND_PHOTOS_FAILURE,
+  AR_SEND_PHOTOS_RESET,
 } = require('../../lib/constants').default;
 
 import { ModelColors } from './arInitialState';
@@ -13,6 +19,23 @@ import { ModelColors } from './arInitialState';
 const InitialState = require('./arInitialState').default;
 
 const initialState = new InitialState();
+
+function updateFeaturePoints(originPoints, updatedPoints) {
+  updatedPoints.map(udpatedPoint => {
+    var updateIndex = originPoints.findIndex(originPoint => {
+      return originPoint.id == udpatedPoint.id;
+    });
+
+    if (updateIndex < 0) {
+      originPoints.push(udpatedPoint);
+    } else {
+      originPoints.splice(updateIndex, 1)
+      originPoints.push(udpatedPoint);
+    }
+  });
+
+  return originPoints;
+}
 
 export default function arReducer(state = initialState, action){
   if (!(state instanceof InitialState) || (state == undefined)) return initialState.mergeDeep(state)
@@ -63,6 +86,36 @@ export default function arReducer(state = initialState, action){
     }
     case AR_MODEL_SELECT: {
       return state.set('selected', action.payload);
+    }
+    case AR_FEATUREPOINTS_UPDATE: {
+      return state.set('featurePoints', updateFeaturePoints(state.get('featurePoints'), action.payload));
+    }
+    case AR_SNAPSHOTS_ADD_REMOVE: {
+      var oldSnapshots = state.get('snapshots');
+      if (action.payload.isAdding) {
+        Array.prototype.push.apply(oldSnapshots, action.payload.data);
+      } else {
+        action.payload.data.map(snapshot => {
+          oldSnapshots.splice(oldSnapshots.indexOf(snapshot), 1);
+        });
+      }
+      return state.set('snapshots', oldSnapshots);
+    }
+
+    case AR_SEND_PHOTOS_REQUEST: {
+      return state.setIn(['sendPhotos', 'total'], action.payload);
+    }
+    case AR_SEND_PHOTOS_SUCCESS: {
+      return state.setIn(['sendPhotos', 'sended'], state.getIn(['sendPhotos', 'sended']) + 1);
+    }
+    case AR_SEND_PHOTOS_FAILURE: {
+      return state.setIn(['sendPhotos', 'failure'], state.getIn(['sendPhotos', 'failure']) + 1);
+    }
+    case AR_SEND_PHOTOS_RESET: {
+      return state.setIn(['sendPhotos', 'total'], 0)
+                .setIn(['sendPhotos', 'sended'], 0)
+                .setIn(['sendPhotos', 'failure'], 0)
+                .set('snapshots', []);
     }
   }
   /**

@@ -4,7 +4,7 @@ import {LatLng} from '../../lib/predefinedClasses';
 
 const {Record} = require('immutable');
 const DEFAULT_LONGITUDE_DELTA = 0.005;
-const DEFAULT_LATITUDE_DELTA = 0.01;
+const DEFAULT_LATITUDE_DELTA = 0.005;
 const DEFAULT_LATITUDE = 0;
 const DEFAULT_LONGITUDE = 0;
 const DEFAULT_MARKER_TITLE = "Profile Marker";

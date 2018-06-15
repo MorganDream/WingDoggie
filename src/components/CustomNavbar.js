@@ -19,11 +19,21 @@ const styles = StyleSheet.create({
   navBarItem: {
     flex: 1,
     justifyContent: 'flex-start',
-  //  alignItems: 'center'
+  },
+  titleItem: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center'
   },
   title: {
     height: 30,
     fontSize: 15,
+    fontWeight: '800',
+    fontFamily: 'Arial-BoldMT',
+  },
+  middleTitle: {
+    height: 30,
+    fontSize: 20,
     fontWeight: '800',
     fontFamily: 'Arial-BoldMT',
   }
@@ -60,8 +70,16 @@ export default class CustomNavBar extends React.Component {
 
   _renderMiddle() {
     return (
-      <View style={styles.navBarItem}>
-        <Text style={styles.title}>{ this.props.title }</Text>
+      <View style={styles.titleItem}>
+        {
+          this.props.onTitlePress?
+          <TouchableOpacity
+            onPress={this.props.onTitlePress}
+            style={{ paddingRight: 10 }}>
+            <Text style={styles.middleTitle}>{ this.props.title }</Text>
+          </TouchableOpacity> :
+          <Text style={styles.middleTitle}>{ this.props.title }</Text>   
+        }
       </View>
     )
   }

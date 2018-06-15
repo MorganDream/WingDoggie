@@ -1,8 +1,12 @@
 'use strict';
 
 import React from 'react';
-import { View, Dimensions, PanResponder, StyleSheet, TouchableHighlight, Animated } from 'react-native';
+import { View, Dimensions, PanResponder, StyleSheet,
+  TouchableHighlight, Animated, ImageBackground, Image,
+  Text, Alert, ActivityIndicator } from 'react-native';
 import { ARKit, withProjectedPosition } from 'react-native-arkit';
+import Modal from 'react-native-modal';
+import RNFS from 'react-native-fs';
 
 import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
@@ -15,6 +19,8 @@ var projectPosition = null;
 function mapStateToProps(state) {
   return {
     ar:state.arReducer,
+    loc: state.locReducer,
+    auth: state.authReducer,
   }
 }
 
@@ -77,8 +83,8 @@ const CursorModel = withProjectedPosition()(({positionProjected, projectionResul
       transition={{duration: 0.1}}
       material={{diffuse: '#4d79ff'}}
       model={{
-        scale: 1, // this is deprecated, use the scale property that is available on all 3d objects
-        file: 'Models.scnassets/wolf/Wolf_One_dae.dae', // make sure you have the model file in the ios project
+        scale: 0.1, // this is deprecated, use the scale property that is available on all 3d objects
+        file: 'Models.scnassets/elf/elf.dae', // make sure you have the model file in the ios project
       }}
     />
   )
@@ -89,7 +95,7 @@ class DoggieInAR extends React.Component {
     super(props);
 
     this.state = {
-      modelTouchPoint: {x: 0, y:0}
+      modelTouchPoint: {x: 0, y:0},
     }
 
     this.ARPanResponder = PanResponder.create({
@@ -153,13 +159,11 @@ class DoggieInAR extends React.Component {
     return (
       <View style={styles.container}>
       <ARKit
-          autoenablesDefaultLighting={false}
           style={styles.arkit}
           planeDetection={ARKit.ARPlaneDetection.Horizontal}
-          lightEstimationEnabled={true}
+          lightEstimationEnabled
           worldAlignment={
             ARKit.ARWorldAlignment.ARWorldAlignmentGravityAndHeading}
-          // origin={{position: {x: -2, y: -1, z:0}, transition: {duration: 1}}}
 
           onPlaneDetected={this.onPlaneUpdated}
           // // event listener for plane update
@@ -174,7 +178,7 @@ class DoggieInAR extends React.Component {
 
           {...this.ARPanResponder.panHandlers}>
           <ARKit.Light
-            position={{ x: 0, y: 10, z: 0 }}
+            position={{ x: 0, y: 10, z: 10 }}
             type={ARKit.LightType.Omni}
             eulerAngles={{ x: -Math.PI / 2 }}
             spotInnerAngle={45}
@@ -186,6 +190,7 @@ class DoggieInAR extends React.Component {
             return (
               <ARKit.Plane
               key={plane.id}
+              id={plane.id}
               eulerAngles={
                 {x: Math.PI/2}
               }
@@ -214,7 +219,7 @@ class DoggieInAR extends React.Component {
               projectPosition={{
                 x: windowWidth / 2,
                 y: windowHeight / 2,
-                plane: (results) => results.length > 0 ? results[results.length-1] : null
+                plane: this.findUsablePlane
               }}
             />
           }
@@ -223,12 +228,11 @@ class DoggieInAR extends React.Component {
             <ARKit.Model
               id="model"
               position={this.props.ar.modelPosition}
-              scale={1}
-              material={{diffuse: '#663300'}}
+              scale={0.1}
               transition={{duration: 0.1}}
               model={{
                 scale: 1, // this is deprecated, use the scale property that is available on all 3d objects
-                file: 'Models.scnassets/wolf/Wolf_One_dae.dae', // make sure you have the model file in the ios project
+                file: 'Models.scnassets/elf/elf.dae', // make sure you have the model file in the ios project
               }}
             />
           }
@@ -239,7 +243,7 @@ class DoggieInAR extends React.Component {
               projectPosition={{
                 x: this.state.modelTouchPoint.x,
                 y: this.state.modelTouchPoint.y,
-                plane: (results) => results.length > 0 ? results[results.length-1] : null
+                plane: this.findUsablePlane
               }}
             />
           }
@@ -254,16 +258,142 @@ class DoggieInAR extends React.Component {
             <View style={styles.touchableInner}/>
           </TouchableHighlight>
         }
+        {
+          this.props.ar.snapshots.length > 0 &&
+              <TouchableHighlight
+                style={styles.touchableImageLibray}
+                activeOpacity={0}
+                onPress={this.onImageLibrayPressed_}>
+                <ImageBackground style={styles.imageIcon} source={require('../resources/imageLibrary.png')} >
+                  <View style={styles.badger}>
+                    <Text style={styles.badgerText}>{this.props.ar.snapshots.length}</Text>
+                  </View>
+                </ImageBackground>
+              </TouchableHighlight>
+        }
+        <Modal style={styles.modal} isVisible={this.props.ar.sendPhotos.total > 0 }>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>{this.props.ar.sendPhotos.sended}/{this.props.ar.sendPhotos.total}</Text>
+            {this.modalLoadProgress()}
+          </View>
+        </Modal>
       </View>
     );
   }
 
+  modalLoadProgress = () => {
+    var self = this;
+    if (this.props.ar.sendPhotos.sended < this.props.ar.sendPhotos.total) {
+      return (
+        <ActivityIndicator size="small" color="#00ff00" animating={true} />
+      )
+    }else if(this.props.ar.sendPhotos.total > 0) {
+      setTimeout(function(){
+        self.props.actions.resetSendPhotos();
+      }, 1000);
+      return (
+        <Image source={require('../resources/confirm_green.png')} style={{width:35, height:35}} />
+      )
+    }
+  }
+
+  findUsablePlane = results => {
+      if (results.length <= 0) {
+        return null;
+      }
+      for (var i=0; i< this.props.ar.planes.length; i++) {
+        var planeIndex = results.findIndex(result => {
+          return result.id == this.props.ar.planes[i].id;
+        })
+        if(planeIndex >= 0){
+          return results[planeIndex];
+        }
+      }
+      return null;
+  }
+
+  onImageLibrayPressed_ = () => {
+    var self = this;
+    Actions.imageLibrary({
+      title: 'Images',
+      rightTitle: '发送',
+      onRightPress: () => {
+        Alert.alert(
+          'Send Photos',
+          'Do you want to send these photos of this elf to her master?',
+          [
+            {
+              text: 'Yes',
+              onPress: () => {
+                self.props.actions.sendPhotos(self.props.auth.loginUserName,
+                  self.props.doggie.owner,
+                  self.props.loc.currentLocation,
+                  self.props.ar.snapshots.map(snapshotUrl => {
+                    var imageName = snapshotUrl.slice(snapshotUrl.indexOf('=')+1, snapshotUrl.lastIndexOf('&'));
+                    return RNFS.copyAssetsFileIOS(snapshotUrl,
+                      RNFS.CachesDirectoryPath + '/' + imageName + '.jpg', -1, -1)
+                      .then(res => {
+                        var imageBase64 = RNFS.readFile(res, 'base64');
+                        RNFS.unlink(res)
+                          .then(() => {
+                            console.log(res + ' DELETED');
+                          })
+                          .catch((err) => {
+                            console.log(err.message);
+                          });
+                        return imageBase64;
+                      })
+                      .catch(error => {
+                        console.log(error);
+                        return null;
+                      })
+                  }));
+              }
+            },
+            {
+              text: 'Not Now',
+              onPress: () => {
+                console.log('Not Now');
+              }
+            }
+          ]
+        );
+      }
+    });
+  }
+
   onTouchablePressed_ = () => {
+    var self = this;
     ARKit.snapshot().then(res => {
       console.log(res);
       Actions.imagePreViewer({
         imageSource: {
           uri: res.url,
+        },
+        title: '保存',
+        rightTitle: '删除',
+        onTitlePress: () => {
+          self.props.actions.takeSnapshots([res.url], true);
+          Actions.pop();
+        },
+        onRightPress: () => {
+          Alert.alert(
+            'REMIND',
+            'Are you sure you want to delete this photo?',
+            [
+              {text: 'Yes', onPress: () => {
+                Actions.pop();
+                return RNFS.unlink(res.url)
+                  .then(() => {
+                    console.log(res.url + ' DELETED');
+                  })
+                  .catch((err) => {
+                    console.log(err.message);
+                  });
+              }},
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+            ],
+          );
         }
       });
     })
@@ -273,7 +403,7 @@ class DoggieInAR extends React.Component {
   }
 
   onFeaturesDetected = event=> {
-  //  console.log(event.nativeEvent.featurePoints);
+    this.props.actions.updateFeaturePoints(event.nativeEvent.featurePoints);
   }
 
   onPlaneUpdated = anchor => {
@@ -301,9 +431,53 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 45,
   },
+  touchableImageLibray: {
+    position:'absolute',
+    bottom: 50,
+    right:10,
+    alignSelf: 'flex-end',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
   touchableInner:{
 
-  }
+  },
+  badger: {
+    width:24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'red',
+    alignItems: 'center'
+  },
+  imageIcon: {
+    width: 60,
+    height: 60,
+    alignItems: 'flex-end'
+  },
+  badgerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  modal:{
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  modalText:{
+    color:'black',
+    fontSize: 20
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    width: 200,
+    height: 100
+  },
 });
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(DoggieInAR);

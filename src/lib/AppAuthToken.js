@@ -2,25 +2,43 @@
 
 import store from 'react-native-simple-store';
 
-export class AppAuthtoken {
+const SESSION_TOKEN_KEY = 'SESSION_TOKEN_KEY';
+const PHOTO_STORE_KEY = 'PHOTO_STORE_KEY';
 
-  constructor () {
-    this.SESSION_TOKEN_KEY = 'SESSION_TOKEN_KEY';
-  }
-
+class AppAuthtoken {
   storeSessionToken (sessionToken) {
-    return store.save(this.SESSION_TOKEN_KEY, {
+    return store.save(SESSION_TOKEN_KEY, {
       sessionToken: sessionToken
     });
   }
 
   getSessionToken() {
-    return store.get(this.SESSION_TOKEN_KEY);
+    return store.get(SESSION_TOKEN_KEY);
   }
 
   deleteSessionToken() {
-    return store.delete(this.SESSION_TOKEN_KEY);
+    return store.delete(SESSION_TOKEN_KEY);
+  }
+}
+
+class PhotoStore {
+  storePhotos (sender, owner, time, location, photoData) {
+    var photo = {
+      sender: sender,
+      owner: owner,
+      time: time,
+      location: location,
+      photoData: photoData,
+      seen: false,
+    }
+
+    return store.push(PHOTO_STORE_KEY, photo);
+  }
+
+  getPhotos() {
+    return store.get(PHOTO_STORE_KEY);
   }
 }
 
 export let appAuthToken = new AppAuthtoken();
+export let photoStore = new PhotoStore();

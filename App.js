@@ -27,6 +27,7 @@ import DoggieInAR from './src/pages/DoggieInAR';
 import SearchNearby from './src/pages/SearchNearby';
 import DoggieDetails from './src/pages/DoggieDetails';
 import ImagePreViewer from './src/pages/ImagePreViewer';
+import ImageLibrary from './src/pages/ImageLibrary';
 
 import DrawerContent from './src/components/DrawerContent';
 import ListItemEditPage from './src/components/ListItemEditPage';
@@ -132,6 +133,10 @@ export default class App extends React.Component {
            navBar={CustomNavBar} />
           <Scene key="imagePreViewer"
             component={ImagePreViewer}
+            type="push"
+            navBar={CustomNavBar} />
+          <Scene key="imageLibrary"
+            component={ImageLibrary}
             type="push"
             navBar={CustomNavBar} />
          </Scene>
