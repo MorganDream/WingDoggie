@@ -28,6 +28,7 @@ import SearchNearby from './src/pages/SearchNearby';
 import DoggieDetails from './src/pages/DoggieDetails';
 import ImagePreViewer from './src/pages/ImagePreViewer';
 import ImageLibrary from './src/pages/ImageLibrary';
+import TravelAlbum from './src/pages/TravelAlbum';
 
 import DrawerContent from './src/components/DrawerContent';
 import ListItemEditPage from './src/components/ListItemEditPage';
@@ -91,6 +92,9 @@ export default class App extends React.Component {
                 navigationBarStyle={styles.drawerPageNavbar}
                 contentComponent={DrawerContent}
                 drawerWidth={200} >
+                  <Scene key="travelAlbum"
+                    component={TravelAlbum}
+                    type="push"/>
                   <Scene key="searchNearby"
                     component={SearchNearby}
                     type="push"/>

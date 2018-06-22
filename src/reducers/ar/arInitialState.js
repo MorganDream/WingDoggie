@@ -13,6 +13,12 @@ var InitialState =  Record({
     sended: 0,
     failure: 0,
   })(),
+  fetchPhotos: new Record({
+    fetching: false,
+    photos: [],
+    failure: null,
+    pullToRefreshing: false,
+  })(),
 });
 
 export default InitialState

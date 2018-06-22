@@ -30,6 +30,11 @@ class DrawerContent extends React.Component {
             underlayColor={'#7373a5'}>
             <Text>Search Nearby</Text>
           </TouchableHighlight>
+          <TouchableHighlight style={styles.button}
+            onPress={()=> {Actions.travelAlbum()}}
+            underlayColor={'#7373a5'}>
+            <Text>Album</Text>
+          </TouchableHighlight>
         </View>
       </View>
     )

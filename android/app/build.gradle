@@ -100,6 +100,7 @@ preBuild.dependsOn exponentPrebuildStep
 
 
 dependencies {
+    compile project(':react-native-geocoder')
     compile project(':react-native-fs')
     compile project(':react-native-background-fetch')
     compile project(':react-native-background-geolocation')

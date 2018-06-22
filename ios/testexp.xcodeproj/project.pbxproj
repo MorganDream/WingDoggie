@@ -11,7 +11,6 @@
 		5031DCE520B6A3FA001330E7 /* specifiedLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5031DCE420B6A3FA001330E7 /* specifiedLaunchScreen.storyboard */; };
 		504984B720AC08BD00D7D139 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 504984B620AC08BD00D7D139 /* Models.scnassets */; };
 		506B16C920AAE65E0055EB09 /* PocketSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506B16C620AAE6410055EB09 /* PocketSVG.framework */; };
-		506B16CA20AAE6990055EB09 /* PocketSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506B16C620AAE6410055EB09 /* PocketSVG.framework */; };
 		506B16CB20AAE6990055EB09 /* PocketSVG.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 506B16C620AAE6410055EB09 /* PocketSVG.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
 		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
@@ -103,7 +102,6 @@
 			files = (
 				502ED18B20D3B07100B6575E /* libRCTARKit.a in Frameworks */,
 				506B16C920AAE65E0055EB09 /* PocketSVG.framework in Frameworks */,
-				506B16CA20AAE6990055EB09 /* PocketSVG.framework in Frameworks */,
 				EBB8117C1BFA0514F79CAF74 /* libPods-testexp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,7 +241,7 @@
 		B56386391DB9693800A0598C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "650 Industries, Inc.";
 				TargetAttributes = {
 					B56386401DB9693800A0598C = {
@@ -561,7 +559,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.morgan.personal.Profile;
+				PRODUCT_BUNDLE_IDENTIFIER = org.morgan.personal.Profile.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = arm64;
@@ -581,7 +579,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = org.morgan.personal.Profile;
+				PRODUCT_BUNDLE_IDENTIFIER = org.morgan.personal.Profile.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = arm64;

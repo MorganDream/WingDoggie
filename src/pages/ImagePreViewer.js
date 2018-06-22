@@ -19,8 +19,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    borderWidth: 2,
-    borderColor: 'black'
   }
 });
 

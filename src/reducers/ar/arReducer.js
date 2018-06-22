@@ -12,6 +12,9 @@ const {
   AR_SEND_PHOTOS_SUCCESS,
   AR_SEND_PHOTOS_FAILURE,
   AR_SEND_PHOTOS_RESET,
+  AR_FETCH_PHOTOS_REQUEST,
+  AR_FETCH_PHOTOS_SUCCESS,
+  AR_FETCH_PHOTOS_FAILURE
 } = require('../../lib/constants').default;
 
 import { ModelColors } from './arInitialState';
@@ -42,7 +45,11 @@ export default function arReducer(state = initialState, action){
 
   switch (action.type) {
     case AR_REINIT_STATE: {
-      return initialState;
+      return state.set('planes', [])
+                  .set('modelPosition', null)
+                  .set('selected', false)
+                  .set('featurePoints', [])
+                  .set('snapshots', []);
     }
     case AR_ADD_UPDATE_PLANE:{
       var previousPlanes = state.get('planes');
@@ -116,6 +123,29 @@ export default function arReducer(state = initialState, action){
                 .setIn(['sendPhotos', 'sended'], 0)
                 .setIn(['sendPhotos', 'failure'], 0)
                 .set('snapshots', []);
+    }
+    case AR_FETCH_PHOTOS_REQUEST: {
+      return state.setIn(['fetchPhotos', 'fetching'], true)
+                  .setIn(['fetchPhotos', 'pullToRefreshing'], action.payload)
+                  .setIn(['fetchPhotos', 'failure'], null);
+    }
+    case AR_FETCH_PHOTOS_SUCCESS: {
+      var photoGroups = action.payload;
+      var photoAlums = [];
+      for(var tag in photoGroups) {
+        photoAlums.push(photoGroups[tag]);
+      }
+      photoAlums.sort((album1, album2) => {
+        return new Date(album2[0].time) - new Date(album1[0].time);
+      })
+      return state.setIn(['fetchPhotos', 'fetching'], false)
+                  .setIn(['fetchPhotos', 'pullToRefreshing'], false)
+                  .setIn(['fetchPhotos', 'photos'], photoAlums);
+    }
+    case AR_FETCH_PHOTOS_FAILURE: {
+      return state.setIn(['fetchPhotos', 'fetching'], false)
+                  .setIn(['fetchPhotos', 'pullToRefreshing'], false)
+                  .setIn(['fetchPhotos', 'failure'], action.payload);
     }
   }
   /**

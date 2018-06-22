@@ -1,7 +1,7 @@
 'use strict'
 
 import React from 'react';
-import { View, StyleSheet, ImageBackground, Image, Dimensions, ImageStore, TouchableHighlight, Alert } from 'react-native';
+import { View, ScrollView, StyleSheet, ImageBackground, Image, Dimensions, ImageStore, TouchableHighlight, Alert } from 'react-native';
 
 import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
@@ -26,6 +26,7 @@ class ImageLibrary extends React.Component {
     return (
       <View style={styles.container}>
         <ImageBackground style={styles.background} source={require('../resources/navi_chart.jpg')}>
+          <ScrollView contentContainerStyle={styles.scrollView}>
           {
             this.props.ar.snapshots.map(url => {
               return (
@@ -60,6 +61,7 @@ class ImageLibrary extends React.Component {
               )
             })
           }
+          </ScrollView>
         </ImageBackground>
       </View>
     )
@@ -73,9 +75,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   background: {
-    flexDirection: 'row',
-    width: windowWidth,
     height: windowHeight,
+  },
+  scrollView: {
+    flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
   },
@@ -85,8 +88,8 @@ const styles = StyleSheet.create({
   },
   touchable: {
     marginTop:20,
-    width:130,
-    height:200,
+    width:100,
+    height:150,
     borderRadius: 10,
     borderWidth: 3,
     borderColor:'white'

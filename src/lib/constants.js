@@ -44,4 +44,7 @@ export default keyMirror({
   AR_SEND_PHOTOS_SUCCESS: null,
   AR_SEND_PHOTOS_FAILURE: null,
   AR_SEND_PHOTOS_RESET: null,
+  AR_FETCH_PHOTOS_REQUEST: null,
+  AR_FETCH_PHOTOS_SUCCESS: null,
+  AR_FETCH_PHOTOS_FAILURE: null,
 });

@@ -333,15 +333,7 @@ class DoggieInAR extends React.Component {
                     return RNFS.copyAssetsFileIOS(snapshotUrl,
                       RNFS.CachesDirectoryPath + '/' + imageName + '.jpg', -1, -1)
                       .then(res => {
-                        var imageBase64 = RNFS.readFile(res, 'base64');
-                        RNFS.unlink(res)
-                          .then(() => {
-                            console.log(res + ' DELETED');
-                          })
-                          .catch((err) => {
-                            console.log(err.message);
-                          });
-                        return imageBase64;
+                        return RNFS.readFile(res, 'base64')                        
                       })
                       .catch(error => {
                         console.log(error);

@@ -2,6 +2,8 @@
 
 import store from 'react-native-simple-store';
 
+import { getGeocodeWithCoordinate, getPlaceInfoWithCoordinate } from './predefinedClasses';
+
 const SESSION_TOKEN_KEY = 'SESSION_TOKEN_KEY';
 const PHOTO_STORE_KEY = 'PHOTO_STORE_KEY';
 
@@ -22,20 +24,35 @@ class AppAuthtoken {
 }
 
 class PhotoStore {
-  storePhotos (sender, owner, time, location, photoData) {
-    var photo = {
+  storePhotos (sender, owner, time, location, photos) {
+    var photoAlbum = {
       sender: sender,
       owner: owner,
       time: time,
       location: location,
-      photoData: photoData,
+      photos: photos,
       seen: false,
     }
 
+    return store.push(PHOTO_STORE_KEY, photoAlbum);
+  }
+
+  storePhoto (sender, owner, time, location, photoBase64, tag, geocode, placeId) {
+    var photo = {
+      tag: tag,
+      sender: sender,
+      owner: owner,
+      time: time,
+      location: location,
+      photo: photoBase64,
+      geocode: geocode,
+      placeId: placeId,
+      seen: false,
+    }
     return store.push(PHOTO_STORE_KEY, photo);
   }
 
-  getPhotos() {
+  fetchPhotos() {
     return store.get(PHOTO_STORE_KEY);
   }
 }

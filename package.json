@@ -13,6 +13,7 @@
     "geolib": "^2.0.24",
     "immutable": "^3.8.2",
     "key-mirror": "^1.0.1",
+    "loadash": "^1.0.0",
     "npm": "^6.1.0",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
