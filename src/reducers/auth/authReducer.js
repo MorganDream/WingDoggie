@@ -1,7 +1,5 @@
 'use strict'
 
-import {Actions} from 'react-native-router-flux';
-
 const {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,

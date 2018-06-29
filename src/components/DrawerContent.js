@@ -35,6 +35,11 @@ class DrawerContent extends React.Component {
             underlayColor={'#7373a5'}>
             <Text>Album</Text>
           </TouchableHighlight>
+          <TouchableHighlight style={styles.button}
+            onPress={()=> {Actions.friends()}}
+            underlayColor={'#7373a5'}>
+            <Text>Friends</Text>
+          </TouchableHighlight>
         </View>
       </View>
     )

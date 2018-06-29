@@ -1,7 +1,7 @@
 'use strict'
 
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 
 import MapView from 'react-native-maps';
 import { Marker, Circle } from 'react-native-maps';
@@ -47,7 +47,11 @@ class SearchNearby extends React.Component {
           {this.props.loc.isSearching? 'Cancel':'Search'}
         </Text>
       </TouchableOpacity>
-      <View style={styles.doggieContainer}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.doggieContainer}
+        horizontal={true}
+        overScrollMode={'always'}>
       {
         this.props.loc.discoveredNearbyDoggies.map(doggie => {
           if (doggie=='none') {
@@ -73,7 +77,7 @@ class SearchNearby extends React.Component {
           )
         })
       }
-      </View>
+      </ScrollView>
       <MapView style={styles.map}
         ref={ref => { this.map = ref; }}
         initialRegion={this.props.loc.mapLocation.toJS()}
@@ -196,12 +200,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Heiti SC'
   },
+  scrollView: {
+    top: 340,
+    bottom: 200,
+    backgroundColor: '#e0e0eb',
+  },
   doggieContainer: {
-    top: 300,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    flexWrap: 'wrap',
+    paddingBottom: 100,
   },
 });
 

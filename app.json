@@ -40,5 +40,8 @@
       "bundleIdentifier": "org.morgan.personal.Profile",
     },
     "isDetached": true,
+    "assetBundlePatterns": [
+      "src/resources/*"
+    ],
   }
 }

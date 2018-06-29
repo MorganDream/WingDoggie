@@ -184,7 +184,7 @@ export function logout(){
     return appAuthToken.deleteSessionToken()
       .then(()=> {
         dispatch(logoutSuccess());
-        Actions.welcome();
+        Actions.loginStack();
       })
       .catch(error => {
         dispatch(logoutFailure(error));

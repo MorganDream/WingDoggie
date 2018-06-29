@@ -1,7 +1,7 @@
 'use strict'
 
 import React from 'react';
-import { View, Text, TouchableHighlight, Keyboard, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableHighlight, Keyboard, StyleSheet, ActivityIndicator, Image } from 'react-native';
 
 import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
@@ -9,6 +9,7 @@ import {bindActionCreators} from 'redux';
 import appAuthToken from '../lib/AppAuthToken';
 
 import * as authActions from '../reducers/auth/authActions';
+import * as friendsActions from '../reducers/friends/friendsActions';
 
 function mapStateToProps(state) {
   return {
@@ -18,11 +19,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(authActions, dispatch)
+    actions: bindActionCreators({ ...authActions, ...friendsActions }, dispatch)
   }
 }
 
 class MainPage extends React.Component {
+  componentWillMount() {
+    this.props.actions.setUser(this.props.auth.loginUserName);
+  }
+
   render(){
       return(
         <View style={styles.view}>

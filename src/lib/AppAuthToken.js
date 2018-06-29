@@ -57,5 +57,81 @@ class PhotoStore {
   }
 }
 
+const ADD_FRIEND_REQUEST = 'ADD_FRIEND_REQUEST';
+const FRIENDS = 'FRIENDS_OF_';
+class Friends {
+  storeAddFriendRequest(from, to, message) {
+    var time = new Date();
+    var tag = time.getTime() + '_' + from + '_' + to;
+    var addFriendRequest = {
+      from: from,
+      to: to,
+      message: message,
+      status: 0,
+      key: tag,
+    }
+    return store.push(ADD_FRIEND_REQUEST, addFriendRequest);
+  }
+
+  getAddFriendRequest() {
+    return store.get(ADD_FRIEND_REQUEST);
+  }
+
+  removeAddFriendRequests(from, to) {
+    return store.get(ADD_FRIEND_REQUEST)
+      .then(addFriendRequests => {
+        return store.delete(ADD_FRIEND_REQUEST)
+          .then( () => {
+            return addFriendRequests.map(request => {
+              if (!(request.from == from && request.to == to)) {
+                return store.push(ADD_FRIEND_REQUEST, request);
+              } else {
+                request.status = 1;
+                return store.push(ADD_FRIEND_REQUEST, request);
+              }
+            })
+          .catch(error => error)
+          })
+      })
+      .catch(error => error);
+  }
+
+  makeFriends(userA, userB) {
+    return store.get(FRIENDS + userA)
+      .then(friends => {
+        if (!!friends && friends.indexOf(userB) >= 0) {
+          return;
+        }
+        return Promise.all([
+          store.push(FRIENDS + userA, userB),
+          store.push(FRIENDS + userB, userA)
+        ])
+      })
+      .catch(error => error)
+  }
+
+  getFriends(user) {
+    return store.get(FRIENDS + user);
+  }
+
+  breakUpFriends(userA, userB) {
+    return Promise.all([
+      store.get(FRIENDS + userA)
+        .then(friends => {
+          return store.update(FRIENDS + userA,
+            friends.filter(friend => friend != userB));
+        })
+        .catch(error => error),
+      store.get(FRIENDS + userB)
+        .then(friends => {
+          return store.update(FRIENDS + userB,
+            friends.filter(friend => friend != userA));
+        })
+        .catch(error => error)
+    ])
+  }
+}
+
 export let appAuthToken = new AppAuthtoken();
 export let photoStore = new PhotoStore();
+export let friends = new Friends();

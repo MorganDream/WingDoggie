@@ -4,6 +4,9 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 
 import TouchableListItem from '../components/TouchableListItem';
+import { Users } from '../lib/dataTable';
+
+import { Actions } from 'react-native-router-flux';
 
 class DoggieDetails extends React.Component {
   render() {
@@ -30,6 +33,19 @@ class DoggieDetails extends React.Component {
       </View>
     )
   }
+
+  goToOwnerProfile = () => {
+    var self = this;
+    Users.map(user => {
+      if(user.name == self.props.doggie.owner) {
+        Actions.ownerDetails({
+          owner: user,
+          title: '个人资料',
+          mode: 'CHECK_USER_PROFILE'
+        })
+      }
+    });
+  }
 }
 
 const windowHeight = Dimensions.get('window').height;
@@ -53,6 +69,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: windowWidth,
     height: 0.65*windowHeight,
+    backgroundColor: '#8a00e6'
   },
   listItem: {
     width: 0.7*windowWidth,
@@ -64,8 +81,8 @@ const styles = StyleSheet.create({
     borderBottomColor: '#e0e0eb',
     borderRightWidth: 2,
     borderRightColor: '#e0e0eb',
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
+    borderRadius: 10,
+    backgroundColor: '#ff33ff'
   },
   touchableText: {
     color: '#660033',

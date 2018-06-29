@@ -78,7 +78,7 @@ export default class CustomNavBar extends React.Component {
             style={{ paddingRight: 10 }}>
             <Text style={styles.middleTitle}>{ this.props.title }</Text>
           </TouchableOpacity> :
-          <Text style={styles.middleTitle}>{ this.props.title }</Text>   
+          <Text style={styles.middleTitle}>{ this.props.title }</Text>
         }
       </View>
     )
@@ -99,6 +99,7 @@ export default class CustomNavBar extends React.Component {
   render() {
     let dinamicStyle = {}
     if (Actions.currentScene === 'doggieDetails' ||
+        Actions.currentScene === 'ownerDetails' ||
         Actions.currentScene === 'doggieInAR' ) {
       dinamicStyle = styles.transparentContainer;
     } else {

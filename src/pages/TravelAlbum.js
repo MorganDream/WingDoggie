@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux'
 
+import { Users } from '../lib/dataTable';
+
 import * as arActions from '../reducers/ar/arActions';
 
 function mapStateToProps(state) {
@@ -54,16 +56,53 @@ class TravelAlbum extends React.Component {
         }
         {
           this.props.ar.fetchPhotos.photos.map(photoAlum => {
+            var imageSources = photoAlum.map(photo => {
+              return {uri:'data:image/png;base64,' + photo.photo};
+            });
+            var senderImageSource = photoAlum[0].sender == 'Jack'?
+              require('../resources/default_avatar.jpg'): require('../resources/default_avatar_girl.jpeg');
             return (
               <View key={photoAlum[0].tag}>
                 <View style={styles.infoContainer}>
                   <View>
-                    <Text style={styles.title}>{photoAlum[0].geocode}</Text>
-                    <Text style={styles.placeTitle}>{photoAlum[0].placeId}</Text>
+                    <TouchableHighlight underlayColor={'#333300'} onPress={() => {
+                      Actions.photoLocation({
+                        title: photoAlum[0].placeId,
+                        location: photoAlum[0].location,
+                        imageSource: {
+                          uri: 'data:image/png;base64,' + photoAlum[0].photo
+                        },
+                        photoCount: photoAlum.length,
+                      });
+                    }}>
+                      <View style={styles.locationTouchable}>
+                        <View>
+                          <Text style={styles.title}>{photoAlum[0].geocode}</Text>
+                          <Text style={styles.placeTitle}>{photoAlum[0].placeId}</Text>
+                        </View>
+                        <Text style={styles.rightArrow}>›</Text>
+                      </View>
+                    </TouchableHighlight>
                     <Text style={styles.content}>{new Date(photoAlum[0].time).toLocaleDateString()}</Text>
                   </View>
                   <View style={styles.senderContainer}>
-                    <Text style={styles.sender}>--by {photoAlum[0].sender}</Text>
+                    <Text style={styles.senderBy}>- by </Text>
+                    <TouchableHighlight underlayColor={'#b3b3cc'} onPress={() => {
+                      Users.map(user => {
+                        if (user.name == photoAlum[0].sender) {
+                          Actions.ownerDetails({
+                            owner: user,
+                            title: '个人资料',
+                            mode: 'CHECK_USER_PROFILE'
+                          });
+                        }
+                      })
+                    }}>
+                      <View style={styles.senderIconContainer}>
+                        <Image style={styles.sender} source={senderImageSource} />
+                        <Text style={styles.senderRightArrow}>›</Text>
+                      </View>
+                    </TouchableHighlight>
                   </View>
                 </View>
                 <View style={styles.photoContainer}>
@@ -71,8 +110,9 @@ class TravelAlbum extends React.Component {
                     photoAlum.map(photo => {
                       return (
                         <TouchableHighlight style={styles.image} key={photo.photo} onPress={()=> {
-                          Actions.imagePreViewer({
-                            imageSource: {uri:'data:image/png;base64,' + photo.photo}
+                          Actions.imagePreviewSwiper({
+                            imageSources: imageSources,
+                            currentIndex: photoAlum.indexOf(photo),
                           })
                         }}>
                           <Image
@@ -109,6 +149,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   title: {
+    paddingTop: 10,
     fontSize: 25,
     fontWeight: 'bold',
   },
@@ -122,11 +163,21 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   senderContainer: {
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  senderBy: {
+    fontSize: 15,
+    color: 'grey',
+    fontWeight: 'bold'
+  },
+  senderIconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   sender: {
-    fontSize: 20,
+    width:50,
+    height: 50,
   },
   photoContainer: {
     flexDirection: 'row',
@@ -136,6 +187,20 @@ const styles = StyleSheet.create({
   image: {
     width:100,
     height:100,
+  },
+  locationTouchable: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  rightArrow: {
+    fontSize: 40,
+    paddingHorizontal: 10,
+    fontWeight: 'bold'
+  },
+  senderRightArrow: {
+    fontSize: 30,
+    paddingLeft: 5,
+    fontWeight: 'bold'
   }
 })
 
