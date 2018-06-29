@@ -52,8 +52,8 @@ export const Users = [
     sign: 'Hi Sugar',
     image: '../resources/default_avatar_girl.jpg',
     doggie: {
-      name: 'Smile',
-      owner: 'Alice',
+      name: 'Timmy',
+      owner: 'Jade',
       home: LatLng(40, 130),
       isTravelling: true,
       position: LatLng(31.235, 121.41),
@@ -72,8 +72,8 @@ export const Users = [
     sign: 'Hi Sugar',
     image: '../resources/default_avatar_girl.jpg',
     doggie: {
-      name: 'Smile',
-      owner: 'Alice',
+      name: 'Lou',
+      owner: 'Eva',
       home: LatLng(40, 130),
       isTravelling: true,
       position: LatLng(31.235, 121.41),

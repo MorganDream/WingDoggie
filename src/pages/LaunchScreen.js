@@ -70,29 +70,12 @@ class LaunchScreen extends React.Component {
   }
 
   componentDidMount(){
-    var self = this;
     if (__DEV__) {
       setTimeout(function(){
         this.props.actions.getSessionToken();
       }.bind(this), 3000);
     }else {
-      Asset.loadAsync(images).then(
-        res => {
-          self.props.actions.getSessionToken();
-        }
-      )
-      .catch(err => {
-        Alert.alert(
-          'Error!',
-          'Catch error while downloading resources',
-          [
-            {text: 'Retry', onPress: () => {
-
-            }},
-            {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
-          ],
-        );
-      })
+      this.preCacheImages();
     }
   }
 }
