@@ -179,7 +179,7 @@ class MyDoggie extends React.Component {
               {text: 'OK', onPress: () => {
                 self.props.actions.onDestinationUpdated(self.props.loc.doggieBufferDestination.latitude,
                                                     self.props.loc.doggieBufferDestination.longitude);
-                Actions.pop();
+                // Actions.pop();
               }},
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
             ],

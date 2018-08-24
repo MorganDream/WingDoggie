@@ -52,7 +52,7 @@ export default function locReducer(state = initialState, action){
     case DOGGIE_DESTINATION_UPDATE: {
       console.log(action.payload);
       var bearing = geolib.getRhumbLineBearing(state.get('position').toJS(), action.payload);
-      var speed = 1000;
+      var speed = 10;
       var nextState = state.setIn(['destination', 'latitude'], action.payload.latitude)
                           .setIn(['destination', 'longitude'], action.payload.longitude)
                           .set('bearing', bearing)
@@ -74,10 +74,10 @@ export default function locReducer(state = initialState, action){
                           .setIn(['position', 'longitude'], newLocation.longitude)
                           .set('timeTag', newTimeTag);
       console.log(geolib.getDistanceSimple(state.get('position').toJS(), state.get('destination').toJS()));
-      if (geolib.getDistanceSimple(state.get('position').toJS(), state.get('destination').toJS()) < 50) {
+      if (geolib.getDistanceSimple(state.get('position').toJS(), state.get('destination').toJS()) < 10) {
         nextState = nextState.set('speed', 0)
                 .set('bearing', 0);
-        if (geolib.getDistanceSimple(state.get('destination').toJS(), state.get('home').toJS()) < 50) {
+        if (geolib.getDistanceSimple(state.get('destination').toJS(), state.get('home').toJS()) < 10) {
           nextState = nextState.set('isTravelling', false);
         }
       }

@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   titleItem: {
-    flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: 200,
   },
   title: {
     height: 30,

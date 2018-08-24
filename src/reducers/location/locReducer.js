@@ -45,7 +45,7 @@ export default function locReducer(state = initialState, action){
       Users.map(user => {
         var doggie = user.doggie;
         var distance = geolib.getDistance(state.currentLocation.toJS(), user.doggie.position.toJS(), 1, 1);
-        if (distance < 10000) {
+        if (distance < 10000000) {
           nearbyDoggies.push(doggie);
         }
       });
